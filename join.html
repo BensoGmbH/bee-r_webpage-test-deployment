@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta property="og:title" content="Lade dir jetzt bee-r herunter 🍻" />
+    <meta property="og:image" content="https://bee-r.benso.ch/img/logo.png" />
+    <meta property="og:url" content="https://bee-r.benso.ch/join" />
+    <script>
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Windows Phone must come first because its UA also contains "Android"
+            // if (/windows phone/i.test(userAgent)) {
+            //    return "Windows Phone";
+            // }
+
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            // if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            if  ([
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ].includes(navigator.platform)) {
+                return "iOS";
+            }
+
+            return "unknown";
+        }</script>
+    <script>
+        function DetectAndServe(){
+            let os = getMobileOperatingSystem();
+            if (os == "Android") {
+                window.location.href = "https://play.google.com/store/apps/details?id=ch.benso.beer_app";
+            } else if (os == "iOS") {
+                window.location.href = "https://apps.apple.com/ch/app/bee-r/id6468967854";
+            } /* else if (os == "Windows Phone") {
+        window.location.href = "/windows";
+    } */ else {
+                window.location.href = "/";
+            }
+        }
+    </script>
+</head>
+<body onload="DetectAndServe()">
+</body>
+</html>
